@@ -102,7 +102,7 @@ long __syscall__newselect(long,long,long,long,long);
 static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, long b, long c, long d, long e, long f)
 {
 	switch(n)
-	{ c
+	{ 
 	case __NR_kill: return __syscall_kill(a, b);
 	case __NR_rename: return __syscall_rename(a, b);
 	case __NR_umask: return __syscall_umask(a);

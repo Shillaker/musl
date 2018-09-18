@@ -1,3 +1,4 @@
+__syscall
 __syscall_cp
 
 __unsupported_syscall

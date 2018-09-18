@@ -1,5 +1,22 @@
+# This file contains symbols we either want to provide at runtime
+# or don't support
+
+# --------------------------------
+# Unsupported
+# --------------------------------
+
+_Exit
+abort
+puts
+
+# --------------------------------
+# Syscalls
+# --------------------------------
+
 __syscall
 __syscall_cp
+
+ioctl
 
 __unsupported_syscall
 
@@ -60,8 +77,6 @@ __syscall_close
 __syscall_ioctl
 __syscall_llseek
 __syscall_fcntl64
-
-ioctl
 
 __syscall_pselect6
 __syscall__newselect

@@ -13,7 +13,6 @@ puts
 # Syscalls
 # --------------------------------
 
-__syscall
 __syscall_cp
 
 ioctl

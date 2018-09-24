@@ -168,7 +168,11 @@ static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, lo
 }
 
 static __attribute__((always_inline)) long __syscall0(long n)                                                 { return __syscall_dispatch(n, 0, 0, 0, 0, 0, 0); }
+static __attribute__((always_inline)) long __syscall(long n)                                                  { return __syscall_dispatch(n, 0, 0, 0, 0, 0, 0); }
+
 static __attribute__((always_inline)) long __syscall1(long n, long a)                                         { return __syscall_dispatch(n, a, 0, 0, 0, 0, 0); }
+static __attribute__((always_inline)) long __syscall(long n, long a)                                          { return __syscall_dispatch(n, a, 0, 0, 0, 0, 0); }
+
 static __attribute__((always_inline)) long __syscall2(long n, long a, long b)                                 { return __syscall_dispatch(n, a, b, 0, 0, 0, 0); }
 static __attribute__((always_inline)) long __syscall3(long n, long a, long b, long c)                         { return __syscall_dispatch(n, a, b, c, 0, 0, 0); }
 static __attribute__((always_inline)) long __syscall4(long n, long a, long b, long c, long d)                 { return __syscall_dispatch(n, a, b, c, d, 0, 0); }

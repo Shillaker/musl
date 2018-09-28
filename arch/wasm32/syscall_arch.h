@@ -28,10 +28,7 @@
 #define __SC_recvmmsg    19
 #define __SC_sendmmsg    20
 
-// ------------------------------------
-// catch-all for unsupported syscalls
-// ------------------------------------
-
+// Catch-all for unsupported syscalls
 long __unsupported_syscall(long n, long a, long b, long c, long d, long e, long f);
 
 
@@ -152,6 +149,7 @@ static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, lo
 	case __NR_munmap: return __syscall_munmap(a, b);
 	case __NR_mremap: return __syscall_mremap(a, b, c, d, e);
 	case __NR_madvise: return __syscall_madvise(a, b, c);
+	case __NR_brk: return __syscall_brk(a);
 
 	case __NR_poll: return __syscall_poll(a, b, c);
 	case __NR_exit_group: return __syscall_exit_group(a);

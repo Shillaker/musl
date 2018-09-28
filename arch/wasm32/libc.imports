@@ -69,6 +69,7 @@ __syscall_mmap
 __syscall_munmap
 __syscall_mremap
 __syscall_madvise
+__syscall_brk
 
 __syscall_poll
 __syscall_exit_group

@@ -6,10 +6,10 @@
 // Faasm-specific
 // ------------------------------------
 
-size_t __faasm_read_state(const char *key, uint8_t *buffer, size_t bufferLen);
-void __faasm_write_state(const char *key, uint8_t *data, size_t dataLen);
-void __faasm_write_state_offset(const char *key, size_t offset, uint8_t *data, size_t dataLen);
-void __faasm_read_state_offset(const char *key, size_t offset, uint8_t *buffer, size_t bufferLen);
+size_t __faasm_read_state(const char *key, unsigned char *buffer, size_t bufferLen);
+void __faasm_write_state(const char *key, unsigned char *data, size_t dataLen);
+void __faasm_write_state_offset(const char *key, size_t offset, unsigned char *data, size_t dataLen);
+void __faasm_read_state_offset(const char *key, size_t offset, unsigned char *buffer, size_t bufferLen);
 
 
 void _start_c(long *p);

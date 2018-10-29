@@ -81,6 +81,7 @@ long __syscall_mmap(long,long,long,long,long,long);
 long __syscall_munmap(long,long);
 long __syscall_mremap(long,long,long,long,long);
 long __syscall_madvise(long,long,long);
+long __syscall_membarrier(long,long);
 long __syscall_brk(long);
 long __syscall_poll(long,long,long);
 long __syscall_exit_group(long);

@@ -149,6 +149,7 @@ static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, lo
 	case __NR_munmap: return __syscall_munmap(a, b);
 	case __NR_mremap: return __syscall_mremap(a, b, c, d, e);
 	case __NR_madvise: return __syscall_madvise(a, b, c);
+	case __NR_membarrier: return __syscall_membarrier(a, b);
 	case __NR_brk: return __syscall_brk(a);
 
 	case __NR_poll: return __syscall_poll(a, b, c);
@@ -174,3 +175,13 @@ static __attribute__((always_inline)) long __syscall5(long n, long a, long b, lo
 static __attribute__((always_inline)) long __syscall6(long n, long a, long b, long c, long d, long e, long f) { return __syscall_dispatch(n, a, b, c, d, e, f); }
 
 #define SYSCALL_USE_SOCKETCALL
+
+
+// ------------------------------------
+// Faasm-specific
+// ------------------------------------
+
+size_t __faasm_read_state(const char *key, uint8_t *buffer, size_t bufferLen);
+void __faasm_write_state(const char *key, uint8_t *data, size_t dataLen);
+void __faasm_write_state_offset(const char *key, size_t offset, uint8_t *data, size_t dataLen);
+void __faasm_read_state_offset(const char *key, size_t offset, uint8_t *buffer, size_t bufferLen);

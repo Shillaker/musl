@@ -181,10 +181,10 @@ static __attribute__((always_inline)) long __syscall6(long n, long a, long b, lo
 // Faasm-specific
 // ------------------------------------
 
-extern size_t __faasm_read_state(const char *key, unsigned char *buffer, size_t bufferLen);
-extern void __faasm_write_state(const char *key, unsigned char *data, size_t dataLen);
-extern void __faasm_write_state_offset(const char *key, size_t offset, unsigned char *data, size_t dataLen);
-extern void __faasm_read_state_offset(const char *key, size_t offset, unsigned char *buffer, size_t bufferLen);
-extern size_t __faasm_read_input(unsigned char *buffer, size_t bufferLen);
-extern void __faasm_write_output(const unsigned char *output, size_t outputLen);
-extern void __faasm_chain_function(const char *name, const unsigned char *inputData, size_t inputDataSize);
+extern long __faasm_read_state(const char *key, unsigned char *buffer, long bufferLen);
+extern void __faasm_write_state(const char *key, unsigned char *data, long dataLen);
+extern void __faasm_write_state_offset(const char *key, size_t offset, unsigned char *data, long dataLen);
+extern void __faasm_read_state_offset(const char *key, long offset, unsigned char *buffer, long bufferLen);
+extern long __faasm_read_input(unsigned char *buffer, long bufferLen);
+extern void __faasm_write_output(const unsigned char *output, long outputLen);
+extern void __faasm_chain_function(const char *name, const unsigned char *inputData, long inputDataSize);

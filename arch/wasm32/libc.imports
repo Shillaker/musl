@@ -82,7 +82,9 @@ __syscall_fcntl64
 __syscall_pselect6
 __syscall__newselect
 
-# faasm state-related calls
+# --------------------------------
+# Faasm
+# --------------------------------
 __faasm_read_state
 __faasm_write_state
 __faasm_read_state_offset

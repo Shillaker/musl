@@ -82,17 +82,6 @@ __syscall_fcntl64
 __syscall_pselect6
 __syscall__newselect
 
-# --------------------------------
-# Faasm
-# --------------------------------
-__faasm_read_state
-__faasm_write_state
-__faasm_read_state_offset
-__faasm_write_state_offset
-__faasm_read_input
-__faasm_write_output
-__faasm_chain_function
-
 # Symbols not supported by clang but currently expected to work on the
 # wasm waterfall
 # TODO(sbc): remove these

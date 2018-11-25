@@ -29,6 +29,7 @@ verbose = False
 
 DIR_BLACKLIST = ['misc', 'ldso']
 BLACKLIST = [
+    'exit.c', # Prefer the JS version for now
     'puts.c', # Prefer the JS version for now
     'abort.c', # Perfer the JS version for now
     '_Exit.c', # Perfer the JS version for now

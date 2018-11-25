@@ -2,10 +2,11 @@
 # or don't support
 
 # --------------------------------
-# Unsupported
+# Misc
 # --------------------------------
 
 _Exit
+exit
 abort
 puts
 

@@ -13,5 +13,6 @@ void _start_c(long *p)
 	char **argv = (void *)(p+1);
 
 	// Cut out the whole libc init process, passing control directly to the application
+	char **envp = argv+argc+1;
     exit(main(argc, argv, envp));
 }

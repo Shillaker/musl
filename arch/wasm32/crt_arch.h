@@ -1,8 +1,6 @@
 #ifndef SHARED
 
-#include <alloca.h>
-
-void _start_c(long *p);
+_Noreturn void _start_c(long *p);
 
 void _start(void) {
   long p = 0;

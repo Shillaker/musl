@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]);
 
-void _start_c(long *p)
+_Noreturn void _start_c(long *p)
 {
 	int argc = p[0];
 	char **argv = (void *)(p+1);

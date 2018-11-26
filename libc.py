@@ -28,12 +28,15 @@ import tempfile
 verbose = False
 
 DIR_BLACKLIST = ['misc', 'ldso']
+
+# We ignore much of the standard libc start-up/ teardown stuff
 BLACKLIST = [
-    'exit.c', # Prefer the JS version for now
-    'puts.c', # Prefer the JS version for now
-    'abort.c', # Perfer the JS version for now
-    '_Exit.c', # Perfer the JS version for now
+    'exit.c',
+    '__libc_start_main.c',
     '__init_tls.c',
+    'puts.c',
+    'abort.c',
+    '_Exit.c',
 ]
 # Files that contain weak reference which are not suppoered by s2wasm
 WEAK_BLACKLIST = [

@@ -17,6 +17,9 @@ puts
 __syscall_cp
 
 ioctl
+getrlimit
+setrlimit
+getrusage
 
 __unsupported_syscall
 

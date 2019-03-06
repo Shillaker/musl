@@ -20,6 +20,9 @@ ioctl
 getrlimit
 setrlimit
 getrusage
+_getenv
+_setenv
+_unsetenv
 
 __unsupported_syscall
 

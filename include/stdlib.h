@@ -49,6 +49,7 @@ int at_quick_exit (void (*) (void));
 _Noreturn void quick_exit (int);
 
 char *getenv (const char *);
+char *_getenv (const char *);
 
 int system (const char *);
 
@@ -98,7 +99,9 @@ size_t __ctype_get_mb_cur_max(void);
 
 int posix_memalign (void **, size_t, size_t);
 int setenv (const char *, const char *, int);
+int _setenv (const char *, const char *, int);
 int unsetenv (const char *);
+int _unsetenv (const char *);
 int mkstemp (char *);
 int mkostemp (char *, int);
 char *mkdtemp (char *);

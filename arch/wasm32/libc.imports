@@ -105,15 +105,29 @@ __builtin_malloc
 setjmp
 longjmp
 
-# Hacked imports
-__floatsitf
-__extenddftf2
+# Hacked imports (see wasm.js). Not sure what to do if they're needed...
 __addtf3
-__subtf3
-__unordtf2
-__netf2
-__fixunstfsi
-__floatunsitf
-__fixtfsi
+__divtf3
 __eqtf2
+__fixsfti
+__fixtfdi
+__fixtfsi
+__fixunstfdi
+__fixunstfsi
+__floatditf
+__floatsitf
+__floatunditf
+__floatunsitf
+__getf2
+__gttf2
+__letf2
+__lttf2
 __multf3
+__multi3
+__muldc3
+__mulsc3
+__multc3
+__netf2
+__subtf3
+__divsc3
+__unordtf2

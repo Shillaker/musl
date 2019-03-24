@@ -16,6 +16,10 @@ puts
 
 __syscall_cp
 
+dlopen
+dlsym
+dlclose
+dlerror
 ioctl
 getrlimit
 setrlimit
@@ -133,5 +137,5 @@ __multc3
 __netf2
 __subtf3
 __trunctfsf2
-__trunctfsf2
+__trunctfdf2
 __unordtf2

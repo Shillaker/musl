@@ -104,3 +104,16 @@ __builtin_malloc
 # Part of musl we still don't compile for wasm
 setjmp
 longjmp
+
+# Hacked imports
+__floatsitf
+__extenddftf2
+__addtf3
+__subtf3
+__unordtf2
+__netf2
+__fixunstfsi
+__floatunsitf
+__fixtfsi
+__eqtf2
+__multf3

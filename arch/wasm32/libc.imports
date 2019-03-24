@@ -109,6 +109,8 @@ longjmp
 __addtf3
 __divtf3
 __eqtf2
+__extenddftf2
+__extendsftf2
 __fixsfti
 __fixtfdi
 __fixtfsi

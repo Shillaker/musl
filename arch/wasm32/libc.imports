@@ -10,6 +10,16 @@ exit
 abort
 puts
 
+
+# --------------------------------
+# Dynamic linking
+# --------------------------------
+
+dlopen
+dlsym
+dlclose
+dlerror
+
 # --------------------------------
 # Syscalls
 # --------------------------------
@@ -30,23 +40,25 @@ _unsetenv
 
 __unsupported_syscall
 
+__syscall_fork
 __syscall_kill
+__syscall_execve
 __syscall_rename
 __syscall_umask
 __syscall_setrlimit
 __syscall_getrlimit
 __syscall_socketcall
 __syscall_setitimer
-
+__syscall_sysinfo
 __syscall_ugetrlimit
 __syscall_stat64
 __syscall_lstat64
 __syscall_fstat64
 __syscall_sched_getaffinity
 __syscall_prlimit64
-
 __syscall_unlink
 __syscall_chdir
+__syscall_getpid
 __syscall_access
 __syscall_dup
 __syscall_pipe
@@ -56,17 +68,22 @@ __syscall_getrusage
 __syscall_gettimeofday
 __syscall_readlink
 __syscall_wait4
-
+__syscall_uname
 __syscall_rt_sigaction
+__syscall_geteuid32
+__syscall_getegid32
+__syscall_setreuid32
+__syscall_setregid32
 __syscall_getgroups32
 __syscall_chown32
 __syscall_getdents64
 __syscall_clock_gettime
 __syscall_tgkill
 __syscall_faccessat
-
+__syscall_membarrier
 __syscall_exit
 __syscall_read
+__syscall_write
 __syscall_open
 __syscall_openat
 __syscall_creat
@@ -74,24 +91,26 @@ __syscall_readv
 __syscall_writev
 __syscall_fsync
 __syscall_fdatasync
-
 __syscall_futex
+__syscall_membarrier
 __syscall_mmap
 __syscall_munmap
 __syscall_mremap
 __syscall_madvise
-__syscall_membarrier
 __syscall_brk
-
 __syscall_poll
 __syscall_exit_group
+__syscall_gettid
 __syscall_close
 __syscall_ioctl
 __syscall_llseek
 __syscall_fcntl64
-
+__syscall_getuid32
+__syscall_getgid32
 __syscall_pselect6
 __syscall__newselect
+__syscall_rt_sigprocmask
+__syscall_tkill
 
 # Symbols not supported by clang but currently expected to work on the
 # wasm waterfall

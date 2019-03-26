@@ -31,6 +31,9 @@
 // Catch-all for unsupported syscalls
 long __unsupported_syscall(long n, long a, long b, long c, long d, long e, long f);
 
+#define __WORKAROUND_NO_ARGUMENTS 0
+#define __WORKAROUND_NO_PARAMETERS long
+
 long __syscall_access(long,long);
 long __syscall_brk(long);
 long __syscall_chdir(long);
@@ -50,6 +53,7 @@ long __syscall_fork(__WORKAROUND_NO_PARAMETERS);
 long __syscall_fstat64(long,long);
 long __syscall_fsync(long);
 long __syscall_futex(long,long,long,long,long,long);
+long __syscall_getcwd(long,long);
 long __syscall_getdents64(long,long,long);
 long __syscall_getegid32(__WORKAROUND_NO_PARAMETERS);
 long __syscall_geteuid32(__WORKAROUND_NO_PARAMETERS);
@@ -68,6 +72,7 @@ long __syscall_llseek(long,long,long,long,long);
 long __syscall_lstat64(long,long);
 long __syscall_madvise(long,long,long);
 long __syscall_membarrier(__WORKAROUND_NO_PARAMETERS);
+long __syscall_mkdir(long,long);
 long __syscall_mmap(long,long,long,long,long,long);
 long __syscall_mremap(long,long,long,long,long);
 long __syscall_munmap(long,long);
@@ -126,6 +131,7 @@ static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, lo
 	case __NR_fstat64: return __syscall_fstat64(a, b);
 	case __NR_fsync: return __syscall_fsync(a);
 	case __NR_futex: return __syscall_futex(a, b, c, d, e, f);
+	case __NR_getcwd: return __syscall_getcwd(a, b);
 	case __NR_getdents64: return __syscall_getdents64(a, b, c);
 	case __NR_getegid32: return __syscall_getegid32(__WORKAROUND_NO_ARGUMENTS);
 	case __NR_geteuid32: return __syscall_geteuid32(__WORKAROUND_NO_ARGUMENTS);
@@ -144,6 +150,7 @@ static __attribute__((always_inline)) long __syscall_dispatch(long n, long a, lo
 	case __NR_lstat64: return __syscall_lstat64(a, b);
 	case __NR_madvise: return __syscall_madvise(a, b, c);
 	case __NR_membarrier: return __syscall_membarrier(__WORKAROUND_NO_ARGUMENTS);
+	case __NR_mkdir: return __syscall_mkdir(a, b);
 	case __NR_mmap2: return __syscall_mmap(a, b, c, d, e, f);
 	case __NR_mremap: return __syscall_mremap(a, b, c, d, e);
 	case __NR_munmap: return __syscall_munmap(a, b);

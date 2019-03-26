@@ -14,29 +14,51 @@ puts
 # Syscalls
 # --------------------------------
 
-__syscall_cp
+# Misc functions (these should be invoking the system calls)
+getpriority
+setpriority
+getresgid
+getresuid
+uname
+realpath
 
+# Functions that should also be invoking syscalls
+openpty
+forkpty
+lockf
+
+# Pthread
+__copy_tls
+
+# Dynamic linking
 dlopen
 dlsym
 dlclose
 dlerror
 
+# I/O
 ioctl
 getrlimit
 setrlimit
 getrusage
+
+# Env
 _getenv
 _setenv
 _unsetenv
 
+# Broken/ odd syscalls
+__syscall
 __unsupported_syscall
 
+# Syscalls
 __syscall_access
 __syscall_brk
 __syscall_chdir
 __syscall_chown32
 __syscall_clock_gettime
 __syscall_close
+__syscall_cp
 __syscall_creat
 __syscall_dup
 __syscall_dup2
@@ -58,6 +80,9 @@ __syscall_getgid32
 __syscall_getgroups32
 __syscall_getpid
 __syscall_getppid
+__syscall_getpriority
+__syscall_getresgid
+__syscall_getresuid
 __syscall_getrlimit
 __syscall_getrusage
 __syscall_gettid
@@ -88,6 +113,7 @@ __syscall_rt_sigaction
 __syscall_rt_sigprocmask
 __syscall_sched_getaffinity
 __syscall_setitimer
+__syscall_setpriority
 __syscall_setregid32
 __syscall_setreuid32
 __syscall_setrlimit
@@ -150,3 +176,17 @@ __subtf3
 __trunctfsf2
 __trunctfdf2
 __unordtf2
+
+# Hacks to ignore zlib
+adler32
+crc32
+deflate
+deflateEnd
+deflateInit_
+deflateInit2_
+deflateSetDictionary
+inflate
+inflateEnd
+inflateInit2_
+inflateSetDictionary
+zlibVersion

@@ -4,6 +4,13 @@ exit
 abort
 puts
 
+# Memory
+malloc
+free
+calloc
+realloc
+posix_memalign
+
 # Musl syscall interface, provided by wasm.js
 __syscall
 __syscall0

@@ -13,4 +13,3 @@ char *getenv(const char *name)
 				return *e + l+1;
 	return 0;
 }
-

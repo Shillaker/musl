@@ -43,4 +43,3 @@ int setenv(const char *var, const char *value, int overwrite)
 	memcpy(s+l1+1, value, l2+1);
 	return __putenv(s, l1, s);
 }
-

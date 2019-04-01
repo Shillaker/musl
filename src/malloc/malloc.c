@@ -288,12 +288,9 @@ void *malloc(size_t n)
 	struct chunk *c;
 	int i, j;
 
-	printf("DEBUG - malloc(%i)\n", n);
-
 	if (adjust_size(&n) < 0) return 0;
 
 	if (n > MMAP_THRESHOLD) {
-        printf("DEBUG - big malloc(%i)\n", n);
 		size_t len = n + OVERHEAD + PAGE_SIZE - 1 & -PAGE_SIZE;
 		char *base = __mmap(0, len, PROT_READ|PROT_WRITE,
 			MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
@@ -305,51 +302,27 @@ void *malloc(size_t n)
 	}
 
 	i = bin_index_up(n);
-	printf("DEBUG - bin_index_up(%i) = %i\n", n, i);
 	for (;;) {
-	    // Check if bin is allocated
 		uint64_t mask = mal.binmap & -(1ULL<<i);
-        printf("DEBUG - malloc mask %i\n", mask);
-
 		if (!mask) {
-            printf("DEBUG - malloc - expand_heap \n");
-		    c = expand_heap(n);
-
-			if (!c) {
-                printf("DEBUG - malloc - !c\n");
-                return 0;
-			}
-
+			c = expand_heap(n);
+			if (!c) return 0;
 			if (alloc_rev(c)) {
 				struct chunk *x = c;
 				c = PREV_CHUNK(c);
 				NEXT_CHUNK(x)->psize = c->csize =
 					x->csize + CHUNK_SIZE(c);
 			}
-
 			break;
 		}
-
 		j = first_set(mask);
-        printf("DEBUG - first_set - j=%i\n", j);
-
 		lock_bin(j);
 		c = mal.bins[j].head;
-        printf("DEBUG - mal.bins[%i].head = %i\n", j, c);
-
-        struct chunk *chunkPtr = (struct chunk *)((char *)(&c) - OVERHEAD);
-        printf("DEBUG - OVERHEAD=%li\n", OVERHEAD);
-        printf("DEBUG - chunkPtr=%i\n", chunkPtr);
-
 		if (c != BIN_TO_CHUNK(j)) {
-			if (!pretrim(c, n, i, j)) {
-			    unbin(c, j);
-			}
+			if (!pretrim(c, n, i, j)) unbin(c, j);
 			unlock_bin(j);
 			break;
 		}
-
-        printf("DEBUG - unlock_bin(%i)\n", j);
 		unlock_bin(j);
 	}
 
@@ -575,3 +548,4 @@ void __malloc_donate(char *start, char *end)
 	c->csize = n->psize = C_INUSE | (end-start);
 	__bin_chunk(c);
 }
+

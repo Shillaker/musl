@@ -1,134 +1,18 @@
-# This file contains symbols we either want to provide at runtime
-# or don't support
-
-# --------------------------------
-# Misc
-# --------------------------------
-
+# Symbols we want wasm.js to define at runtime
 _Exit
-exit
 abort
 puts
 
-# --------------------------------
-# Syscalls
-# --------------------------------
-
-# Misc functions (these should be invoking the system calls)
-getpriority
-setpriority
-getresgid
-getresuid
-uname
-realpath
-
-# Functions that should also be invoking syscalls
-openpty
-forkpty
-lockf
-
-# Pthread
-__copy_tls
-
-# Dynamic linking
-dlopen
-dlsym
-dlclose
-dlerror
-
-# I/O
-ioctl
-getrlimit
-setrlimit
-getrusage
-
-# Env
-_getenv
-_setenv
-_unsetenv
-
-# Broken/ odd syscalls
+# Musl syscall interface, provided by wasm.js
 __syscall
-__unsupported_syscall
-
-# Syscalls
-__syscall_access
-__syscall_brk
-__syscall_chdir
-__syscall_chown32
-__syscall_clock_gettime
-__syscall_close
+__syscall0
+__syscall1
+__syscall2
+__syscall3
+__syscall4
+__syscall5
+__syscall6
 __syscall_cp
-__syscall_creat
-__syscall_dup
-__syscall_dup2
-__syscall_execve
-__syscall_exit
-__syscall_exit_group
-__syscall_faccessat
-__syscall_fcntl64
-__syscall_fdatasync
-__syscall_fork
-__syscall_fstat64
-__syscall_fsync
-__syscall_futex
-__syscall_getcwd
-__syscall_getdents64
-__syscall_getegid32
-__syscall_geteuid32
-__syscall_getgid32
-__syscall_getgroups32
-__syscall_getpid
-__syscall_getppid
-__syscall_getpriority
-__syscall_getresgid
-__syscall_getresuid
-__syscall_getrlimit
-__syscall_getrusage
-__syscall_gettid
-__syscall_gettimeofday
-__syscall_getuid32
-__syscall_ioctl
-__syscall_kill
-__syscall_llseek
-__syscall_lstat64
-__syscall_madvise
-__syscall_membarrier
-__syscall_mkdir
-__syscall_mmap
-__syscall_mremap
-__syscall_munmap
-__syscall__newselect
-__syscall_open
-__syscall_openat
-__syscall_pipe
-__syscall_poll
-__syscall_prlimit64
-__syscall_pselect6
-__syscall_read
-__syscall_readlink
-__syscall_readv
-__syscall_rename
-__syscall_rt_sigaction
-__syscall_rt_sigprocmask
-__syscall_sched_getaffinity
-__syscall_setitimer
-__syscall_setpriority
-__syscall_setregid32
-__syscall_setreuid32
-__syscall_setrlimit
-__syscall_socketcall
-__syscall_stat64
-__syscall_sysinfo
-__syscall_tgkill
-__syscall_tkill
-__syscall_ugetrlimit
-__syscall_uname
-__syscall_umask
-__syscall_unlink
-__syscall_wait4
-__syscall_write
-__syscall_writev
 
 # Symbols not supported by clang but currently expected to work on the
 # wasm waterfall
@@ -146,47 +30,38 @@ __builtin_malloc
 setjmp
 longjmp
 
-# Hacked imports (see wasm.js). Not sure what to do if they're needed...
-__addtf3
-__divsc3
-__divtf3
-__eqtf2
-__extenddftf2
-__extendsftf2
-__fixsfti
-__fixtfdi
-__fixtfsi
-__fixunstfdi
-__fixunstfsi
-__floatditf
-__floatsitf
-__floatunditf
-__floatunsitf
-__getf2
-__gttf2
-__letf2
-__lttf2
-__multf3
-__multi3
-__muldc3
-__mulsc3
-__multc3
-__netf2
-__subtf3
-__trunctfsf2
-__trunctfdf2
-__unordtf2
+# Dynamic linking
+dlopen
+dlsym
+dlclose
+dlerror
 
-# Hacks to ignore zlib
-adler32
-crc32
-deflate
+# Misc
+ioctl
+
+# Python-related
+realpath
+zlibVersion
 deflateEnd
+deflate
+inflateEnd
+inflate
+inflateSetDictionary
+adler32
 deflateInit_
 deflateInit2_
 deflateSetDictionary
-inflate
-inflateEnd
+crc32
 inflateInit2_
-inflateSetDictionary
-zlibVersion
+getpriority
+setpriority
+uname
+openpty
+forkpty
+lockf
+getresuid
+getresgid
+getrusage
+getrlimit
+setrlimit
+__copy_tls

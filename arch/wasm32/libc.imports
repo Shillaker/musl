@@ -40,6 +40,9 @@ dlerror
 # Misc
 ioctl
 
+# Threading
+# __pthread_self
+
 # Python-related
 realpath
 zlibVersion

@@ -1,6 +1,6 @@
-static inline struct pthread *__pthread_self(void) {
-  return (struct pthread *)UINTPTR_MAX;
-}
+#pragma once
+
+struct pthread *__pthread_self(void);
 
 #define TP_ADJ(p) (p)
 

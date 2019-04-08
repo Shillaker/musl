@@ -1,6 +1,6 @@
-#pragma once
-
-struct pthread *__pthread_self(void);
+static inline struct pthread *__pthread_self(void) {
+    return (struct pthread *)1;
+}
 
 #define TP_ADJ(p) (p)
 

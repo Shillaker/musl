@@ -61,8 +61,7 @@ CFLAGS = ['-std=c99',
           '-Wno-dangling-else',
           '-Wno-absolute-value',
           '-Wno-parentheses',
-          '-Wno-unknown-pragmas',
-          '-fPIC']
+          '-Wno-unknown-pragmas']
 
 
 def check_output(cmd, **kwargs):

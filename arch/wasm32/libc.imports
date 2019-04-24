@@ -42,18 +42,6 @@ ioctl
 
 # Python-related
 realpath
-zlibVersion
-deflateEnd
-deflate
-inflateEnd
-inflate
-inflateSetDictionary
-adler32
-deflateInit_
-deflateInit2_
-deflateSetDictionary
-crc32
-inflateInit2_
 getpriority
 setpriority
 uname

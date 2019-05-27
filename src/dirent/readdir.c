@@ -10,7 +10,8 @@ struct dirent *readdir(DIR *dir)
 {
 	struct dirent *de;
 
-	printf("DIRENT START - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+	printf("READDIR START - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+    printf("READDIR sizeof DIR %lu  dir %i\n", sizeof *dir, dir);
 
 	/*
 	 * This function is a little hard to understand and can be fragile.
@@ -41,26 +42,26 @@ struct dirent *readdir(DIR *dir)
 		// Drop out if there are none
 		if (len <= 0) {
 			if (len < 0 && len != -ENOENT) {
-                printf("DIRENT GETERR - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+                printf("READDIR GETERR - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
                 errno = -len;
 			}
 
-            printf("DIRENT GETEMPTY - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+            printf("READDIR GETEMPTY - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
 			return 0;
 		}
 
 		// Set up the buffer markers
 		dir->buf_end = len;
 		dir->buf_pos = 0;
-        printf("DIRENT GET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+        printf("READDIR GET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
     }
 	else {
-        printf("DIRENT NOGET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+        printf("READDIR NOGET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
     }
 
 	// Get a pointer to the next dirent
 	de = (void *)(dir->buf + dir->buf_pos);
-    printf("DIRENT DE - %s   reclen %i \n", de->d_name, de->d_reclen);
+    printf("READDIR DE - %s   reclen %i \n", de->d_name, de->d_reclen);
 
 	// Move the buffer position along to the beginning of the one after
 	dir->buf_pos += de->d_reclen;
@@ -68,7 +69,7 @@ struct dirent *readdir(DIR *dir)
 	// Not sure what this bit does.
 	dir->tell = de->d_off;
 
-    printf("DIRENT END - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
+    printf("READDIR END - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
 
     if(de->d_reclen == 0) {
         exit(1);

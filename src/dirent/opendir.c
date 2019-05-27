@@ -30,5 +30,6 @@ DIR *opendir(const char *name)
 	dir->fd = fd;
 
 	printf("OPENDIR %s - buf_pos %i  buf_end %i  fd %i\n", name, dir->buf_pos, dir->buf_end, dir->fd);
+	printf("OPENDIR sizeof DIR %lu  dir %i\n", sizeof *dir, dir);
 	return dir;
 }

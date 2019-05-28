@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "__dirent.h"
 #include "syscall.h"
 
@@ -16,6 +17,8 @@ DIR *opendir(const char *name)
 		__syscall(SYS_close, fd);
 		return 0;
 	}
+
+	printf("OPENDIR - dir->buf_pos %i  dir->vbuf_end %i\n", dir->buf_pos, dir->buf_end);
 
 	dir->fd = fd;
 	return dir;

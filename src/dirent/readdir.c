@@ -10,9 +10,6 @@ struct dirent *readdir(DIR *dir)
 {
 	struct dirent *de;
 
-	printf("READDIR START - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
-    printf("READDIR sizeof DIR %lu  dir %i\n", sizeof *dir, dir);
-
 	/*
 	 * This function is a little hard to understand and can be fragile.
 	 * Each call to readdir will return a single dirent, but a call to getdents
@@ -28,10 +25,6 @@ struct dirent *readdir(DIR *dir)
 	 *
 	 * Clearly this depends heavily on the DIR not being modified between calls, and
 	 * the DIR being passed in properly zeroed on the first call.
-	 *
-	 * 27/05/2019 - there is a bug in calloc where the new memory isn't always zeroed properly
-	 * this meant opendir created a non-zero DIR, which caused this function to perform an
-	 * infinite loop.
 	 */
 	if (dir->buf_pos >= dir->buf_end) {
 	    // We enter this block on the first call, or if we've read through the whole buffer
@@ -42,34 +35,25 @@ struct dirent *readdir(DIR *dir)
 		// Drop out if there are none
 		if (len <= 0) {
 			if (len < 0 && len != -ENOENT) {
-                printf("READDIR GETERR - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
                 errno = -len;
 			}
 
-            printf("READDIR GETEMPTY - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
 			return 0;
 		}
 
 		// Set up the buffer markers
 		dir->buf_end = len;
 		dir->buf_pos = 0;
-        printf("READDIR GET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
-    }
-	else {
-        printf("READDIR NOGET - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
     }
 
 	// Get a pointer to the next dirent
 	de = (void *)(dir->buf + dir->buf_pos);
-    printf("READDIR DE - %s   reclen %i \n", de->d_name, de->d_reclen);
 
 	// Move the buffer position along to the beginning of the one after
 	dir->buf_pos += de->d_reclen;
 
 	// Not sure what this bit does.
 	dir->tell = de->d_off;
-
-    printf("READDIR END - buf_pos %i  buf_end %i \n", dir->buf_pos, dir->buf_end);
 
     if(de->d_reclen == 0) {
         exit(1);

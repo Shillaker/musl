@@ -18,7 +18,7 @@ DIR *opendir(const char *name)
 		return 0;
 	}
 
-	printf("OPENDIR - dir->buf_pos %i  dir->vbuf_end %i\n", dir->buf_pos, dir->buf_end);
+	printf("OPENDIR - dir->buf_pos %i  dir->buf_end %i (dir %i)\n", dir->buf_pos, dir->buf_end, dir);
 
 	dir->fd = fd;
 	return dir;

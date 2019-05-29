@@ -10,8 +10,6 @@ struct dirent *readdir(DIR *dir)
 {
 	struct dirent *de;
 
-    printf("READDIR - dir->buf_pos %i  dir->buf_end %i (dir %i)\n", dir->buf_pos, dir->buf_end, dir);
-
 	/*
 	 * This function is a little hard to understand and can be fragile.
 	 * Each call to readdir will return a single dirent, but a call to getdents

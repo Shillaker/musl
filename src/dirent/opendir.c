@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "__dirent.h"
 #include "syscall.h"
 
@@ -17,6 +18,23 @@ DIR *opendir(const char *name)
 		__syscall(SYS_close, fd);
 		return 0;
 	}
+
+	// There seems to be a bug in dlmalloc where the memory returned by calloc is not zeroed.
+	// Unfortunately we need to manually zero the fields before the buffer to ensure things
+	// work properly
+	size_t zeroSize = 4* sizeof(int) + sizeof(off_t);
+	memset(dir, 0, zeroSize);
+
+	unsigned char* memPtr = (unsigned char*) dir;
+	printf("OPENDIR MEMORY:\n");
+	for(int i = 0; i < 200; i++){
+        if(i > 0 && (i % 8 == 0)) {
+            printf("\n");
+        }
+	    printf("%02x ", memPtr[i]);
+
+	}
+	printf("\n");
 
 	printf("OPENDIR - dir->buf_pos %i  dir->buf_end %i (dir %i)\n", dir->buf_pos, dir->buf_end, dir);
 

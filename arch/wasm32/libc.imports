@@ -39,6 +39,7 @@ dlerror
 
 # Misc
 ioctl
+__bswap_64
 
 # Python-related
 realpath

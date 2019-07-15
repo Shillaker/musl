@@ -29,6 +29,12 @@ verbose = False
 
 DIR_BLACKLIST = ['misc', 'ldso']
 
+# Exceptions from the excluded dirs
+DIR_WHITELIST = [
+    "getopt.c",
+    "getopt_long.c",
+]
+
 # We ignore much of the standard libc start-up/ teardown stuff
 BLACKLIST = [
     'exit.c',
@@ -110,15 +116,18 @@ def musl_sources(musl_root, include_weak):
   """musl sources to be built."""
   sources = []
   for d in os.listdir(os.path.join(musl_root, 'src')):
-    if d in DIR_BLACKLIST:
-      continue
     base = os.path.join(musl_root, 'src', d)
     pattern = os.path.join(base, '*.c')
+
     for f in glob.glob(pattern):
-      if os.path.basename(f) in BLACKLIST:
+      filename = os.path.basename(f)
+      if d in DIR_BLACKLIST and filename not in DIR_WHITELIST:
         continue
-      if not include_weak and os.path.basename(f) in WEAK_BLACKLIST:
+      if filename in BLACKLIST:
         continue
+      if not include_weak and filename in WEAK_BLACKLIST:
+        continue
+
       sources.append(f)
   return sorted(sources)
 

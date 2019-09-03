@@ -171,7 +171,7 @@ class ObjCompiler(Compiler):
 
   def __call__(self, src):
     target = 'wasm32-unknown-unknown-wasm'
-    compile_cmd = [os.path.join(self.clang_dir, 'wasm32-clang'), '-target', target,
+    compile_cmd = [os.path.join(self.clang_dir, 'clang'), '-target', target,
                    '-Os', '-c', '-nostdinc']
     compile_cmd += includes(self.musl, self.arch, self.tmpdir)
     compile_cmd += CFLAGS
@@ -194,7 +194,7 @@ class AsmCompiler(Compiler):
 
   def __call__(self, src):
     target = 'wasm32-unknown-unknown'
-    compile_cmd = [os.path.join(self.clang_dir, 'wasm32-clang'), '-target', target,
+    compile_cmd = [os.path.join(self.clang_dir, 'clang'), '-target', target,
                    '-Os', '-emit-llvm', '-S', '-nostdinc']
     compile_cmd += includes(self.musl, self.arch, self.tmpdir)
     compile_cmd += CFLAGS

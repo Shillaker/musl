@@ -67,7 +67,6 @@ CFLAGS = ['-std=c99',
           '-Wno-dangling-else',
           '-Wno-absolute-value',
           '-Wno-parentheses',
-          '-fPIC',
           '-Wno-unknown-pragmas']
 
 

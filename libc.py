@@ -67,6 +67,7 @@ CFLAGS = ['-std=c99',
           '-Wno-dangling-else',
           '-Wno-absolute-value',
           '-Wno-parentheses',
+          '-fPIC',
           '-Wno-unknown-pragmas']
 
 
@@ -170,7 +171,7 @@ class ObjCompiler(Compiler):
     super(ObjCompiler, self).__init__(out, clang_dir, musl, arch, tmpdir)
 
   def __call__(self, src):
-    target = 'wasm32-unknown-unknown-wasm'
+    target = 'wasm32'
     compile_cmd = [os.path.join(self.clang_dir, 'clang'), '-target', target,
                    '-Os', '-c', '-nostdinc']
     compile_cmd += includes(self.musl, self.arch, self.tmpdir)
@@ -193,7 +194,7 @@ class AsmCompiler(Compiler):
     self.sexpr_wasm = sexpr_wasm
 
   def __call__(self, src):
-    target = 'wasm32-unknown-unknown'
+    target = 'wasm32'
     compile_cmd = [os.path.join(self.clang_dir, 'clang'), '-target', target,
                    '-Os', '-emit-llvm', '-S', '-nostdinc']
     compile_cmd += includes(self.musl, self.arch, self.tmpdir)

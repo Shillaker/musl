@@ -105,8 +105,9 @@ int fprintf(FILE *__restrict, const char *__restrict, ...);
 int sprintf(char *__restrict, const char *__restrict, ...);
 int snprintf(char *__restrict, size_t, const char *__restrict, ...);
 
-// This is specific to Emscripten
+// These are specific to Emscripten (we just do a pass-through)
 int iprintf(const char *__restrict, ...);
+int fiprintf(FILE *__restrict, const char *__restrict, ...);
 
 int vprintf(const char *__restrict, __isoc_va_list);
 int vfprintf(FILE *__restrict, const char *__restrict, __isoc_va_list);

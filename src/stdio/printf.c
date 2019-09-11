@@ -11,7 +11,7 @@ int printf(const char *restrict fmt, ...)
 	return ret;
 }
 
-// This is an Emscripten-specific function for them to optimise printf.
+// This is an Emscripten-specific function to optimise printf.
 // We can just pass through to normal printf backend.
 int iprintf(const char *restrict fmt, ...)
 {

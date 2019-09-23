@@ -84,16 +84,16 @@ static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f32x4_make(float c0, float c1, 
     return (v128_t)(__f32x4){c0, c1, c2, c3};
 }
 
+// wasm_f64x2_make(...)
+static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f64x2_make(double c0, double c1) {
+  return (v128_t)(__f64x2){c0, c1};
+}
+
 #ifdef __wasm_unimplemented_simd128__
 
 // wasm_i64x2_make(...)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_i64x2_make(int64_t c0, int64_t c1) {
   return (v128_t)(__i64x2){c0, c1};
-}
-
-// wasm_f64x2_make(...)
-static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f64x2_make(double c0, double c1) {
-  return (v128_t)(__f64x2){c0, c1};
 }
 
 #endif // __wasm_unimplemented_simd128__
@@ -248,8 +248,6 @@ static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f32x4_splat(float a) {
 #define wasm_f32x4_replace_lane(a, i, b)                                                           \
   ((v128_t)__builtin_wasm_replace_lane_f32x4((__f32x4)(a), i, b))
 
-#ifdef __wasm_unimplemented_simd128__
-
 // v128_t wasm_f64x2_splat(double a)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f64x2_splat(double a) {
   return (v128_t)(__f64x2){a, a};
@@ -261,8 +259,6 @@ static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f64x2_splat(double a) {
 // v128_t wasm_f64x4_replace_lane(v128_t a, imm i, double b)
 #define wasm_f64x2_replace_lane(a, i, b)                                                           \
   ((v128_t)__builtin_wasm_replace_lane_f64x2((__f64x2)(a), i, b))
-
-#endif // __wasm_unimplemented_simd128__
 
 // v128_t wasm_i8x16_eq(v128_t a, v128_t b)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_i8x16_eq(v128_t a, v128_t b) {
@@ -721,12 +717,12 @@ static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f32x4_neg(v128_t a) {
     return (v128_t)(-(__f32x4)a);
 }
 
+#ifdef __wasm_unimplemented_simd128__
+
 // v128_t wasm_f32x4_sqrt(v128_t a)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f32x4_sqrt(v128_t a) {
     return (v128_t)__builtin_wasm_sqrt_f32x4((__f32x4)a);
 }
-
-#ifdef __wasm_unimplemented_simd128__
 
 // v128_t wasm_f32x4_qfma(v128_t a, v128_t b, v128_t c)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f32x4_qfma(v128_t a, v128_t b, v128_t c) {

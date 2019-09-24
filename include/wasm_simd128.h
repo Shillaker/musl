@@ -1,18 +1,7 @@
-// NOTE - This is copied from the Emscripten repo at:
+// NOTE - This is modified from a copy from the Emscripten repo at:
 //
 // https://github.com/emscripten-core/emscripten/blob/incoming/system/include/wasm_simd128.h
 //
-
-/*
- * Copyright 2019 The Emscripten Authors.  All rights reserved.
- * Emscripten is available under two separate licenses, the MIT license and the
- * University of Illinois/NCSA Open Source License.  Both these licenses can be
- * found in the LICENSE file.
- */
-
-/*
- * WebAssembly SIMD128 Intrinsics
- */
 
 #pragma once
 
@@ -873,13 +862,13 @@ static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_f64x2_convert_u64x2(v128_t a) {
 
 #endif // __wasm_unimplemented_simd128__
 
-#ifdef __wasm_unimplemented_simd128__
-
 // v128_t wasm_v8x16_shuffle(v128_t a, v128_t b, c0, ..., c15)
 #define wasm_v8x16_shuffle(                                                                        \
   a, b, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15)                      \
   ((v128_t)(__builtin_shufflevector((__u8x16)(a), (__u8x16)(b), c0, c1, c2, c3, c4, c5, c6, c7,    \
     c8, c9, c10, c11, c12, c13, c14, c15)))
+
+#ifdef __wasm_unimplemented_simd128__
 
 // v128_t wasm_i8x16_narrow_i16x8(v128_t a, v128_t b)
 static __inline__ v128_t __DEFAULT_FN_ATTRS wasm_i8x16_narrow_i16x8(v128_t a, v128_t b) {

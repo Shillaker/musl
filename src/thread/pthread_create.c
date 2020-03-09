@@ -316,5 +316,6 @@ fail:
 	return EAGAIN;
 }
 
-weak_alias(__pthread_exit, pthread_exit);
-weak_alias(__pthread_create, pthread_create);
+// Faasm intercepting
+//weak_alias(__pthread_exit, pthread_exit);
+//weak_alias(__pthread_create, pthread_create);

@@ -50,4 +50,8 @@ getresgid
 getrusage
 getrlimit
 setrlimit
-__copy_tls
+
+# Threading
+pthread_create
+pthread_exit
+pthread_join

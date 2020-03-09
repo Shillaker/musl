@@ -33,6 +33,7 @@ int __pthread_tryjoin_np(pthread_t t, void **res)
 	return t->detach_state==DT_JOINABLE ? EBUSY : __pthread_join(t, res);
 }
 
-weak_alias(__pthread_tryjoin_np, pthread_tryjoin_np);
-weak_alias(__pthread_timedjoin_np, pthread_timedjoin_np);
-weak_alias(__pthread_join, pthread_join);
+// Faasm intercepting
+//weak_alias(__pthread_tryjoin_np, pthread_tryjoin_np);
+//weak_alias(__pthread_timedjoin_np, pthread_timedjoin_np);
+//weak_alias(__pthread_join, pthread_join);
